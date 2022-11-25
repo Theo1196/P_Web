@@ -1,0 +1,147 @@
+<?php
+
+/**
+ * 
+ * 
+ * Auteur : Luca
+ * Date : 21.11.22
+ * Description : requetes sql utilier pour les page en php
+ */
+
+
+ class Database {
+
+
+    // Variable de classe
+    private $connector;
+
+    public function __construct(){
+
+        try
+        {
+        $this->connector = new PDO('mysql:host=localhost;dbname=db-recette;charset=utf8' , 'dbNicknameUser', 'dbNicknameUser');
+        }
+        catch (PDOException $e)
+        {
+        die('Erreur : ' . $e->getMessage());
+        }
+
+    }
+    private function querySimpleExecute($query){
+        return $this->connector->query($query);
+        // TODO: permet de pr�parer et d�ex�cuter une requ�te de type simple (sans where)
+    }
+//prepare, bind et execute pour proteger les requetes
+    private function queryPrepareExecute($query, $binds){
+        $req = $this->connector->prepare($query);
+        foreach ($binds as $key => $element) {
+            $req->bindValue($key, $element["value"], $element["type"]);
+        }
+        $req->execute();
+        return $req;        
+    }
+//format data
+    private function formatData($req){
+        $result = $req->fetchALL(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+
+    private function unsetData($req){
+
+        // TODO: vider le jeu d�enregistrement
+    }
+
+//requete sql qui rend tous les profs
+    public function getAllTeachers(){
+        $query = "SELECT * FROM t_teacher";
+        $req = $this->querySimpleExecute($query);
+        $teachers = $this->formatData($req);
+        return $teachers;
+
+    }
+//requete sql qui rend tous les utilisateurs
+    public function getAllUser(){
+        $query = "SELECT * FROM t_user";
+        $req = $this->querySimpleExecute($query);
+        $users = $this->formatData($req);
+        return $users;
+        
+    }
+//requete sql utiliser pour afficher la page differement selon l'utilisateur
+    public function getUser($data) {
+        $query = "SELECT * FROM t_user WHERE useLogin ='". $data["login"] ."'";
+        $req = $this->querySimpleExecute($query);
+        $user = $this->formatData($req)[0];
+
+        if (password_verify($data["password"], $user["usePassword"])) {
+            return $user;
+        } else {
+            return false;
+        }
+
+    }
+//requete sql qui rend les section
+    public function getSection(){
+        $query = "SELECT * FROM t_section";
+        $req = $this->querySimpleExecute($query);
+        $sections = $this->formatData($req);
+        return $sections;
+    }
+//requete sql qui rend un prof
+    public function getOneTeacher($id){
+        $query = "SELECT * FROM t_teacher INNER JOIN t_section ON t_teacher.fkSection = t_section.idSection WHERE idTeacher='". $id ."'";
+        
+        $req = $this->querySimpleExecute($query);
+        $teacher = $this->formatData($req);
+        ///retourne la premiere valeur du tableau
+        return $teacher[0];
+
+    }
+//requete sql qui efface un prof
+    public function deleteOneTeacher($idTeacher){
+
+        $sql = "DELETE FROM t_teacher WHERE idTeacher='" . $idTeacher . "'";
+        $req = $this->querySimpleExecute($sql);
+        $idTeacher = $this->formatData($req);
+        return $idTeacher;
+
+    }
+//requete sql qui ajoute un prof
+    public function addOneTeacher($teaFirstname, $teaName, $teaGender, $teaNickname, $teaOrigine, $fkSection){
+        $sql = "INSERT INTO t_teacher (`teaFirstname`, `teaName`, `teaGender`,`teaNickname`,`teaOrigine`,`fkSection`) VALUES (:teaFirstname, :teaName, :teaGender, :teaNickname, :teaOrigine, :fkSection)";
+        $binds = [];
+        $binds["teaFirstname"] = ["value" => $teaFirstname , "type" => PDO::PARAM_STR];
+        $binds["teaName"] = ["value" => $teaName , "type" => PDO::PARAM_STR];
+        $binds["teaGender"] = ["value" => $teaGender , "type" => PDO::PARAM_STR_CHAR];
+        $binds["teaNickname"] = ["value" => $teaNickname , "type" => PDO::PARAM_STR];
+        $binds["teaOrigine"] = ["value" => $teaOrigine , "type" => PDO::PARAM_STR];
+        $binds["fkSection"] = ["value" => $fkSection , "type" => PDO::PARAM_INT];
+        $this->queryPrepareExecute($sql, $binds);
+    }
+//requete sql qui modifi un prof
+    public function updateTeacher($teaFirstname, $teaName, $teaGender, $teaNickname, $teaOrigine, $fkSection, $idTeacher){
+        $sql = "UPDATE t_teacher SET teaFirstname = :teaFirstname, teaName = :teaName, teaGender = :teaGender, teaNickname = :teaNickname, teaOrigine = :teaOrigine, teaOrigine = :teaOrigine, fkSection = :fkSection WHERE  idTeacher = :idTeacher";
+        $binds = [];
+        $binds["teaFirstname"] = ["value" => $teaFirstname , "type" => PDO::PARAM_STR];
+        $binds["teaName"] = ["value" => $teaName , "type" => PDO::PARAM_STR];
+        $binds["teaGender"] = ["value" => $teaGender , "type" => PDO::PARAM_STR_CHAR];
+        $binds["teaNickname"] = ["value" => $teaNickname , "type" => PDO::PARAM_STR];
+        $binds["teaOrigine"] = ["value" => $teaOrigine , "type" => PDO::PARAM_STR];
+        $binds["fkSection"] = ["value" => $fkSection , "type" => PDO::PARAM_INT];
+        $binds["idTeacher"] = ["value" => $idTeacher , "type" => PDO::PARAM_INT];
+        $this->queryPrepareExecute($sql, $binds);
+    }
+//requete sql qui ajoute une élection
+    public function addOneChoice($teaVoix, $idTeacher){
+        $sql = "UPDATE t_teacher SET teaVoix = $teaVoix WHERE idTeacher =$idTeacher";
+        $req = $this->querySimpleExecute($sql);
+        $teaVoix = $this->formatData($req);
+        return $teaVoix;
+    }
+
+
+ }
+
+
+?>
