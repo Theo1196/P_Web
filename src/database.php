@@ -19,7 +19,7 @@
 
         try
         {
-        $this->connector = new PDO('mysql:host=localhost;dbname=db-recette;charset=utf8' , 'dbNicknameUser', 'dbNicknameUser');
+        $this->connector = new PDO('mysql:host=localhost;dbname=db_recette;charset=utf8' , 'dbNicknameUser', 'dbNicknameUser');
         }
         catch (PDOException $e)
         {
@@ -53,11 +53,11 @@
     }
 
 //requete sql qui rend tous les profs
-    public function getAllTeachers(){
-        $query = "SELECT * FROM t_teacher";
+    public function getAllRecettes(){
+        $query = "SELECT * FROM t_recette";
         $req = $this->querySimpleExecute($query);
-        $teachers = $this->formatData($req);
-        return $teachers;
+        $recette = $this->formatData($req);
+        return $recette;
 
     }
 //requete sql qui rend tous les utilisateurs
@@ -108,28 +108,23 @@
 
     }
 //requete sql qui ajoute un prof
-    public function addOneTeacher($teaFirstname, $teaName, $teaGender, $teaNickname, $teaOrigine, $fkSection){
-        $sql = "INSERT INTO t_teacher (`teaFirstname`, `teaName`, `teaGender`,`teaNickname`,`teaOrigine`,`fkSection`) VALUES (:teaFirstname, :teaName, :teaGender, :teaNickname, :teaOrigine, :fkSection)";
+    public function addOneRecette($recImage){
+        $sql = "INSERT INTO t_recette (`recImage`) VALUES (:recImage)";
         $binds = [];
-        $binds["teaFirstname"] = ["value" => $teaFirstname , "type" => PDO::PARAM_STR];
-        $binds["teaName"] = ["value" => $teaName , "type" => PDO::PARAM_STR];
-        $binds["teaGender"] = ["value" => $teaGender , "type" => PDO::PARAM_STR_CHAR];
-        $binds["teaNickname"] = ["value" => $teaNickname , "type" => PDO::PARAM_STR];
-        $binds["teaOrigine"] = ["value" => $teaOrigine , "type" => PDO::PARAM_STR];
-        $binds["fkSection"] = ["value" => $fkSection , "type" => PDO::PARAM_INT];
+        $binds["recImage"] = ["value" => $recImage , "type" => PDO::PARAM_STR];
         $this->queryPrepareExecute($sql, $binds);
     }
 //requete sql qui modifi un prof
-    public function updateTeacher($teaFirstname, $teaName, $teaGender, $teaNickname, $teaOrigine, $fkSection, $idTeacher){
-        $sql = "UPDATE t_teacher SET teaFirstname = :teaFirstname, teaName = :teaName, teaGender = :teaGender, teaNickname = :teaNickname, teaOrigine = :teaOrigine, teaOrigine = :teaOrigine, fkSection = :fkSection WHERE  idTeacher = :idTeacher";
+    public function updateTeacher($recImage, $idRecette){
+        $sql = "UPDATE t_recette SET recImage = :recImage WHERE  idRecette = :idRecette";
         $binds = [];
-        $binds["teaFirstname"] = ["value" => $teaFirstname , "type" => PDO::PARAM_STR];
-        $binds["teaName"] = ["value" => $teaName , "type" => PDO::PARAM_STR];
-        $binds["teaGender"] = ["value" => $teaGender , "type" => PDO::PARAM_STR_CHAR];
-        $binds["teaNickname"] = ["value" => $teaNickname , "type" => PDO::PARAM_STR];
-        $binds["teaOrigine"] = ["value" => $teaOrigine , "type" => PDO::PARAM_STR];
-        $binds["fkSection"] = ["value" => $fkSection , "type" => PDO::PARAM_INT];
-        $binds["idTeacher"] = ["value" => $idTeacher , "type" => PDO::PARAM_INT];
+        $binds["recImage"] = ["value" => $recImage , "type" => PDO::PARAM_STR];
+        // $binds["teaName"] = ["value" => $teaName , "type" => PDO::PARAM_STR];
+        // $binds["teaGender"] = ["value" => $teaGender , "type" => PDO::PARAM_STR_CHAR];
+        // $binds["teaNickname"] = ["value" => $teaNickname , "type" => PDO::PARAM_STR];
+        // $binds["teaOrigine"] = ["value" => $teaOrigine , "type" => PDO::PARAM_STR];
+        // $binds["fkSection"] = ["value" => $fkSection , "type" => PDO::PARAM_INT];
+        $binds["idRecette"] = ["value" => $idRecette , "type" => PDO::PARAM_INT];
         $this->queryPrepareExecute($sql, $binds);
     }
 //requete sql qui ajoute une élection
