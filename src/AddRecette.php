@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="index.css">
 <?php
 session_start();
 include("Database.php");
