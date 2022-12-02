@@ -107,15 +107,18 @@
         return $idTeacher;
 
     }
-//requete sql qui ajoute un prof
-    public function addOneRecette($recImage){
-        $sql = "INSERT INTO t_recette (`recImage`) VALUES (:recImage)";
+//requete sql qui ajoute une recette
+    public function addOneRecette($recTitre, $recCategorie, $recPreparation, $recImage){
+        $sql = "INSERT INTO t_recette (`recTitre`, `recCategorie`, `recPreparation`, `recImage`) VALUES (:recTitre, :recCategorie, :recPreparation, :recImage)";
         $binds = [];
+        $binds["recTitre"] = ["value" => $recTitre , "type" => PDO::PARAM_STR];
+        $binds["recCategorie"] = ["value" => $recCategorie , "type" => PDO::PARAM_STR];
+        $binds["recPreparation"] = ["value" => $recPreparation , "type" => PDO::PARAM_STR];
         $binds["recImage"] = ["value" => $recImage , "type" => PDO::PARAM_STR];
         $this->queryPrepareExecute($sql, $binds);
     }
-//requete sql qui modifi un prof
-    public function updateTeacher($recImage, $idRecette){
+//requete sql qui modifi une recette
+    public function updateRecette($recImage, $idRecette){
         $sql = "UPDATE t_recette SET recImage = :recImage WHERE  idRecette = :idRecette";
         $binds = [];
         $binds["recImage"] = ["value" => $recImage , "type" => PDO::PARAM_STR];
