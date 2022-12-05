@@ -7,7 +7,7 @@ $file = $_FILES["addFile"]["name"];
 $image = $_FILES["addFile"]["tmp_name"];
 $path = "./img/" . $file;
 if($_POST["recName"] == null || $_POST["recCategorie"] == null || $_POST["recPreparation"] == null){
-    echo "veiller remplire tout les champs";
+    echo "veuiller remplire tout les champs";
     $valide = 0;
 }
 else{
