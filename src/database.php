@@ -19,7 +19,7 @@
 
         try
         {
-        $this->connector = new PDO('mysql:host=localhost;dbname=db_recette;charset=utf8' , 'dbNicknameUser', 'dbNicknameUser');
+        $this->connector = new PDO('mysql:host=localhost;dbname=db_recette;charset=utf8' , 'root', 'root');
         }
         catch (PDOException $e)
         {
