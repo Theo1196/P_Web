@@ -49,11 +49,11 @@ session_start();
 include("Database.php");
 $db = new Database();
 $recttes = $db->getAllRecettes();
-foreach($recttes as $rectte){
+// foreach($recttes as $rectte){
     
-    echo "<img src=". $rectte["recImage"] ." alt='image'>";
-    // echo '<img src="data:image/jpeg;base64,'.base64_encode($rectte['recImage']).'"/><br>';
-}
+//     echo "<img src=". $rectte["recImage"] ." alt='image'>";
+//     // echo '<img src="data:image/jpeg;base64,'.base64_encode($rectte['recImage']).'"/><br>';
+// }
 // important d'avoir enctype dans le form
 echo "<form method='post' action='checkRecette.php' enctype='multipart/form-data'>";
 echo "<label for='recName'>Nom de la recette: </label>";
