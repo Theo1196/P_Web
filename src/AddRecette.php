@@ -29,13 +29,38 @@ Description : Page pour la page d'accueil du site Recettes.
             <ul>
                 <li><a class="nav-btn" href="Accueil.php" ><h1>Accueil</h1></a></li>
                 <li><a class="nav-btn" href="AddRecette.php" style=" text-decoration: underline;"><h1>Ajouter une recette</h1></a></li>
-                <li><a class="nav-btn" href="Recette.php"><h1>Liste des recettes</h1></a></li>
+                <li><a class="nav-btn" href="ListRecette.php"><h1>Liste des recettes</h1></a></li>
                 <li><a class="nav-btn" href="Contact.php"><h1>Contact</h1></a></li>
 
             </ul>
         </div>
     </header>
     <main>
+        <?php
+        session_start();
+        include("Database.php");
+        $db = new Database();
+        $recttes = $db->getAllRecettes();
+        // foreach($recttes as $rectte){
+            
+        //     echo "<img src=". $rectte["recImage"] ." alt='image'>";
+        //     // echo '<img src="data:image/jpeg;base64,'.base64_encode($rectte['recImage']).'"/><br>';
+        // }
+        // important d'avoir enctype dans le form
+        echo "<form method='post' action='checkRecette.php' enctype='multipart/form-data'>";
+        echo "<label for='recName'>Nom de la recette: </label>";
+        echo "<input type='text' name='recName' id='recName'><br>";
+        echo "<label for='recCategorie'>categorie: </label>";
+        echo "<input type='text' name='recCategorie' id='recCategorie'><br>";
+        echo "<label for='recPreparation'>preparation: </label>";
+        echo "<input type='text' name='recPreparation' id='recPreparation'><br>";
+
+        echo "<input type='file' name='addFile'>";
+        echo "<input type='submit' value='upload'></form>";
+
+
+
+        ?>
     </main>
     <footer>
         <hr>
@@ -44,28 +69,3 @@ Description : Page pour la page d'accueil du site Recettes.
 </body>
 
 </html>
-<?php
-session_start();
-include("Database.php");
-$db = new Database();
-$recttes = $db->getAllRecettes();
-// foreach($recttes as $rectte){
-    
-//     echo "<img src=". $rectte["recImage"] ." alt='image'>";
-//     // echo '<img src="data:image/jpeg;base64,'.base64_encode($rectte['recImage']).'"/><br>';
-// }
-// important d'avoir enctype dans le form
-echo "<form method='post' action='checkRecette.php' enctype='multipart/form-data'>";
-echo "<label for='recName'>Nom de la recette: </label>";
-echo "<input type='text' name='recName' id='recName'><br>";
-echo "<label for='recCategorie'>categorie: </label>";
-echo "<input type='text' name='recCategorie' id='recCategorie'><br>";
-echo "<label for='recPreparation'>preparation: </label>";
-echo "<input type='text' name='recPreparation' id='recPreparation'><br>";
-
-echo "<input type='file' name='addFile'>";
-echo "<input type='submit' value='upload'></form>";
-
-
-
-?>

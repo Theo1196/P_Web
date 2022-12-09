@@ -29,12 +29,25 @@ Description : Page pour la page d'accueil du site Recettes.
             <ul>
                 <li><a class="nav-btn" href="Accueil.php"><h1>Accueil</h1></a></li>
                 <li><a class="nav-btn" href="AddRecette.php"><h1>Ajouter une recette</h1></a></li>
-                <li><a class="nav-btn" href="Recette.php" style=" text-decoration: underline;"><h1>Liste des recettes</h1></a></li>
+                <li><a class="nav-btn" href="ListRecette.php" style=" text-decoration: underline;"><h1>Liste des recettes</h1></a></li>
                 <li><a class="nav-btn" href="Contact.php"><h1>Contact</h1></a></li>
             </ul>
         </div>
     </header>
     <main>
+
+        <h1>Liste des recettes</h1>
+        <?php
+        session_start();
+        include("Database.php");
+        $db = new Database();
+        $recttes = $db->getAllRecettes();
+        foreach($recttes as $rectte){
+            echo "<img src=". $rectte["recImage"] ." alt='image'> /";
+            echo $rectte["recTitre"] . " / ";
+            echo $rectte["recCategorie"] . "<br>";
+        }
+        ?>
 
     </main>
     <footer>
@@ -42,5 +55,4 @@ Description : Page pour la page d'accueil du site Recettes.
         <p class="copyright">Copyright © - Luca, Veprim, Théo</p>
     </footer>
 </body>
-
 </html>
