@@ -11,7 +11,7 @@ Description : Page pour la page d'accueil du site Recettes.
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Accueil.css">
+    <link rel="stylesheet" href="index.css">
     <title>Accueil - Recettes</title>
 </head>
 
@@ -27,10 +27,11 @@ Description : Page pour la page d'accueil du site Recettes.
 
         <div class="Container-header">
             <ul>
-                <li><a id="active" class="nav-btn" href=""><h1>Accueil</h1></a></li>
-                <li><a class="nav-btn" href="AddRecette.php"><h1>Ajouter une recette</h1></a></li>
+                <li><a class="nav-btn" href="" style=" text-decoration: underline;"><h1>Accueil</h1></a></li>
+                <li><a class="nav-btn" href="AddRecette.php" ><h1>Ajouter une recette</h1></a></li>
                 <li><a class="nav-btn" href="Recette.php"><h1>Liste des recettes</h1></a></li>
                 <li><a class="nav-btn" href="Contact.php"><h1>Contact</h1></a></li>
+
             </ul>
         </div>
     </header>
