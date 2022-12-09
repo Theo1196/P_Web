@@ -13,7 +13,8 @@ p{
 }
 
 img{
-    width: 500px;
+    width: 150px;
+    height: 140px;
 }
 
 input{
@@ -89,7 +90,6 @@ li:hover{
 footer{
     font-size: 20px;
     text-align: center;
-    position: absolute;
     bottom: 0;  
     width: 75%;
     margin-left: 12%;
