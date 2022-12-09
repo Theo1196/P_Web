@@ -12,6 +12,10 @@ p{
     padding: 8px;
 }
 
+img{
+    width: 500px;
+}
+
 input{
     border-radius: 50px;
     margin: 0 5px;
