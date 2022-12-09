@@ -43,9 +43,12 @@ Description : Page pour la page d'accueil du site Recettes.
         $db = new Database();
         $recttes = $db->getAllRecettes();
         foreach($recttes as $rectte){
+            echo "<form method='post' action='checkListRecette.php?idRecette=". $rectte["idRecette"] ."'>";
+
             echo "<img src=". $rectte["recImage"] ." alt='image'> /";
             echo $rectte["recTitre"] . " / ";
-            echo $rectte["recCategorie"] . "<br>";
+            echo $rectte["recCategorie"] . " ";
+            echo "<input type='submit' value='effacer'></form><br>";
         }
         ?>
 
