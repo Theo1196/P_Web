@@ -47,7 +47,8 @@ Description : Page pour la page d'accueil du site Recettes.
 
             echo "<img src=". $rectte["recImage"] ." alt='image'> /";
             echo $rectte["recTitre"] . " / ";
-            echo $rectte["recCategorie"] . " ";
+            echo $rectte["recCategorie"] . "/ ";
+            echo $rectte["recTemps"] . "/ ";
             echo "<input type='submit' value='effacer'></form><br>";
         }
         ?>
