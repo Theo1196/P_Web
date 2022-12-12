@@ -35,7 +35,20 @@ Description : Page pour la page d'accueil du site Recettes.
         </div>
     </header>
     <main>
-
+        <h1 class="titleContact">Page pour nous contacter</h1>
+        <form action="" class="Form-contact">
+            <label for="name">Nom :</label>
+            <input type="text" id="name" name="name" placeholder="Votre nom...">
+            <label for="surname">Prénom :</label>
+            <input type="text" name="surname" id="surname" placeholder="Votre prénom...">
+            <label for="email">Mail :</label>
+            <input type="text" name="email" id="email" placeholder="Votre adresse mail...">
+            <label for="localite">Localité :</label>
+            <input type="text" name="localite" id="localite" placeholder="Votre localité...">
+            <label for="info">Autre information :</label>
+            <textarea name="info" id="" cols="30" rows="2"></textarea>
+            <input type="submit" name="submitContact" id="submitContact" value="Envoyer">
+        </form>
     </main>
     <footer>
         <hr>
