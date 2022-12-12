@@ -1,5 +1,5 @@
 <!-- 
-Auteur : Théo Dormond
+Auteur : Thibeau Racine
 Date : 25.11.2022
 Lieu : ETML 
 Description : Page pour la page d'accueil du site Recettes.
@@ -48,7 +48,10 @@ Description : Page pour la page d'accueil du site Recettes.
             echo "<img src=". $rectte["recImage"] ." alt='image'> /";
             echo $rectte["recTitre"] . " / ";
             echo $rectte["recCategorie"] . " ";
-            echo "<input type='submit' value='effacer'></form><br>";
+            echo "<input type='submit' value='effacer'></form>";
+
+            echo "<form method='post' action='detailRecette.php?idRecette=". $rectte["idRecette"] ."'>";
+            echo "<input type='submit' value='detail'></form><br>";
         }
         ?>
 

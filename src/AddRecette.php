@@ -1,5 +1,5 @@
 <!-- 
-Auteur : Théo Dormond
+Auteur : moi
 Date : 25.11.2022
 Lieu : ETML 
 Description : Page pour la page d'accueil du site Recettes.
