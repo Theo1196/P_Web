@@ -51,7 +51,7 @@ Description : Page pour la page d'accueil du site Recettes.
             echo "<input type='submit' value='effacer'></form>";
 
             echo "<form method='post' action='detailRecette.php?idRecette=". $rectte["idRecette"] ."'>";
-            echo "<input type='submit' value='detail'></form><br>";
+            echo "<input type='submit' value='detail'></form><br>"; 
         }
         ?>
 
