@@ -119,6 +119,27 @@ li:hover{
     margin-top: 15px;
 }
 
+.addrecette{
+    margin-left: 85px;
+}
+
+.col-md-4{
+    padding: 7px;
+}
+
+.formAddRecette{
+    display: flex;
+}
+
+.addButton{
+    margin: 2px;
+    border-radius: 15px;
+}
+
+.addBtn {
+    margin-top: 5px;
+}
+
 footer{
     font-size: 20px;
     text-align: center;
