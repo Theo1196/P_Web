@@ -26,7 +26,7 @@ Description : Page pour la page d'accueil du site Recettes.
         </form>
 
         <div class="Container-header">
-            <ul>
+            <ul class="nav-bar">
                 <li><a class="nav-btn" href="Accueil.php"><h1>Accueil</h1></a></li>
                 <li><a class="nav-btn" href="AddRecette.php"><h1>Ajouter une recette</h1></a></li>
                 <li><a class="nav-btn" href="ListRecette.php" style=" text-decoration: underline;"><h1>Liste des recettes</h1></a></li>
@@ -44,13 +44,19 @@ Description : Page pour la page d'accueil du site Recettes.
         foreach($recttes as $rectte){
             if($_GET["idRecette"] == $rectte["idRecette"]){
                 echo "<img src=". $rectte["recImage"] ." alt='image'><br>";
-                echo $rectte["recTitre"] . "<br>";
-                echo $rectte["recCategorie"] . "<br>";
-                echo $rectte["recTemps"] . "<br>";
-                echo $rectte["recIngredients"] . "<br>";
-                echo $rectte["recPreparation"] . "<br>";
+                echo "Nom du plat: " . $rectte["recTitre"] . "<br><br>";
+                echo "Categorie: " . $rectte["recCategorie"] . "<br><br>";
+                echo "Temps de préparation: " . $rectte["recTemps"] . "<br><br>";
+
+                $recIngredients = explode(";", $rectte["recIngredients"]);
+                foreach($recIngredients as $recIngredient){
+                    echo "<ul><li>". $recIngredient ."</li></ul>";
+                }
+
+                echo "Preparation: " . $rectte["recPreparation"] . "<br><br>";
+
             }
-            }
+        }
         ?>
 
     </main>

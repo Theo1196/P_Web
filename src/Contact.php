@@ -26,7 +26,7 @@ Description : Page pour la page d'accueil du site Recettes.
         </form>
 
         <div class="Container-header">
-            <ul>
+            <ul class="nav-bar">
                 <li><a class="nav-btn" href="Accueil.php"><h1>Accueil</h1></a></li>
                 <li><a class="nav-btn" href="AddRecette.php" ><h1>Ajouter une recette</h1></a></li>
                 <li><a class="nav-btn" href="ListRecette.php"><h1>Liste des recettes</h1></a></li>
@@ -36,7 +36,10 @@ Description : Page pour la page d'accueil du site Recettes.
     </header>
     <main>
         <h1 class="titleContact">Page pour nous contacter</h1>
-        <form action="" class="Form-contact">
+
+        <?php
+        echo "<form action='checkContact.php' class='Form-contact' method='POST'>";
+        ?>
             <label for="name">Nom :</label>
             <input type="text" id="name" name="name" placeholder="Votre nom...">
             <label for="surname">Prénom :</label>
@@ -48,7 +51,9 @@ Description : Page pour la page d'accueil du site Recettes.
             <label for="info">Autre information :</label>
             <textarea name="info" id="" cols="30" rows="2"></textarea>
             <input type="submit" name="submitContact" id="submitContact" value="Envoyer">
-        </form>
+        <?php
+        echo "<form>";
+        ?>
     </main>
     <footer>
         <hr>

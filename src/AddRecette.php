@@ -26,20 +26,11 @@ Description : Page pour la page d"accueil du site Recettes.
         </form>
 
         <div class="Container-header">
-            <ul>
-                <li><a class="nav-btn" href="Accueil.php">
-                        <h1>Accueil</h1>
-                    </a></li>
-                <li><a class="nav-btn" href="AddRecette.php" style=" text-decoration: underline;">
-                        <h1>Ajouter une recette</h1>
-                    </a></li>
-                <li><a class="nav-btn" href="ListRecette.php">
-                        <h1>Liste des recettes</h1>
-                    </a></li>
-                <li><a class="nav-btn" href="Contact.php">
-                        <h1>Contact</h1>
-                    </a></li>
-
+            <ul class="nav-bar">
+                <li><a class="nav-btn" href="Accueil.php" ><h1>Accueil</h1></a></li>
+                <li><a class="nav-btn" href="AddRecette.php" style=" text-decoration: underline;"><h1>Ajouter une recette</h1></a></li>
+                <li><a class="nav-btn" href="ListRecette.php"><h1>Liste des recettes</h1></a></li>
+                <li><a class="nav-btn" href="Contact.php"><h1>Contact</h1></a></li>
             </ul>
         </div>
     </header>
