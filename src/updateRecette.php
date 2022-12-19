@@ -38,26 +38,35 @@ Description : Page pour la page d'accueil du site Recettes.
 
         <h1>Liste des recettes</h1>
         <?php
-        session_start();
         include("Database.php");
         $db = new Database();
         $recttes = $db->getAllRecettes();
-        foreach($recttes as $rectte){
-            echo "<form method='post' action='checkListRecette.php?idRecette=". $rectte["idRecette"] ."'>";
+        foreach($recttes as $recette){
+            if($_GET["idRecette"] == $recette["idRecette"]){
+                echo "<img src=". $recette["recImage"] ." alt='image'><br>";
 
-            echo "<img src=". $rectte["recImage"] ." alt='image'> /";
-            echo $rectte["recTitre"] . " / ";
-            echo $rectte["recCategorie"] . " ";
-            echo "<input type='submit' value='effacer'></form>";
+                echo "<label for='name'>Nom du plat: </label>";
+                echo "<input type='text' name='name' id='name' value=". $recette["recTitre"] ."><br><br>";
+                echo "<label for='categorie'>Categorie: </label>";
+                echo "<input type='text' name='categorie' id='categorie' value=". $recette["recCategorie"] ."><br><br>";
+                echo "<label for='Temps'>Temps de préparation: </label>";
+                echo "<input type='text' name='Temps' id='Temps' value=". $recette["recTemps"] ."><br><br>";
 
-            echo "<form method='post' action='detailRecette.php?idRecette=". $rectte["idRecette"] ."'>";
-            echo "<input type='submit' value='detail'></form><br>";
-            
-            echo "<form method='post' action='updateRecette.php?idRecette=". $rectte["idRecette"] ."'>";
-            echo "<input type='submit' value='mettre à jour'></form><br>";
+
+                $recIngredients = explode(";", $recette["recIngredients"]);
+                foreach($recIngredients as $recIngredient){
+                    echo $recIngredient;
+                    echo ' ingredient: <input type="text" name="ingredient" id="name" size="100" value="'. $recIngredient .'"></input><br><br>';
+                    
+                }
+
+                echo "Preparation: ";
+
+                echo "<textarea name='' id='' cols='130' rows='6'>". $recette["recPreparation"] ."</textarea>";
+
+            }
         }
         ?>
-
     </main>
     <footer>
         <hr>
