@@ -41,15 +41,22 @@ Description : Page pour la page d'accueil du site Recettes.
         session_start();
         include("Database.php");
         $db = new Database();
-        $recttes = $db->getAllRecettes();
-        foreach($recttes as $rectte){
-            echo "<form method='post' action='checkListRecette.php?idRecette=". $rectte["idRecette"] ."'>";
+        $recettes = $db->getAllRecettes();
+        foreach($recettes as $recette){
+            echo "<form method='post' action='checkListRecette.php?idRecette=". $recette["idRecette"] ."'>";
 
-            echo "<img src=". $rectte["recImage"] ." alt='image'> /";
-            echo $rectte["recTitre"] . " / ";
-            echo $rectte["recCategorie"] . "/ ";
-            echo $rectte["recTemps"] . "/ ";
-            echo "<input type='submit' value='effacer'></form><br>";
+
+            echo "<img src=". $recette["recImage"] ." alt='image'> /";
+            echo $recette["recTitre"] . " / ";
+            echo $recette["recCategorie"] . " ";
+            echo "<input type='submit' value='effacer'></form>";
+
+            echo "<form method='post' action='detailRecette.php?idRecette=". $recette["idRecette"] ."'>";
+            echo "<input type='submit' value='detail'></form><br>";
+            
+            echo "<form method='post' action='updateRecette.php?idRecette=". $recette["idRecette"] ."'>";
+            echo "<input type='submit' value='mettre à jour'></form><br>";
+
         }
         ?>
 
