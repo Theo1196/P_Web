@@ -70,7 +70,7 @@
     }
 //requete sql utiliser pour afficher la page differement selon l'utilisateur
     public function getUser($data) {
-        $query = "SELECT * FROM t_user WHERE useLogin ='". $data["login"] ."'";
+        $query = "SELECT * FROM t_recette WHERE useLogin ='". $data["login"] ."'";
         $req = $this->querySimpleExecute($query);
         $user = $this->formatData($req)[0];
 

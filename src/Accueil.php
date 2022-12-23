@@ -17,13 +17,16 @@ Description : Page pour la page d'accueil du site Recettes.
 
 <body>
     <header>
-        <form action="" class="Form-login">
-            <label for="login">Login :</label>
-            <input type="text" id="login" name="login" placeholder="Votre login...">
-            <label for="password">Mot de passe :</label>
-            <input type="password" id="password" name="password" placeholder="Votre mot de passe...">
-            <input type="submit" value="Se connecter" name="submit">
-        </form>
+        <?php
+        if(!isset($_SESSION["user"])){
+            echo"<form method='post' action='login.php' class='Form-login'>";
+                echo "<label for='login'>Login :</label>";
+                echo "<input type='text' id='login' name='login' placeholder='Votre login...'>";
+                echo "<label for='password'>Mot de passe :</label>";
+                echo "<input type='password' id='password' name='password' placeholder='Votre mot de passe...'>";
+                echo "<input type='submit' value='Se connecter' name='submit'></form>";
+        }
+        ?>
 
         <div class="Container-header">
             <ul class="nav-bar">
