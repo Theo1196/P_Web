@@ -68,7 +68,7 @@ Description : Page pour la page d'accueil du site Recettes.
                     
                 }
                 echo "Preparation: ";
-                echo "<textarea name='' id='' cols='130' rows='6'>". $recette["recPreparation"] ."</textarea><br>";
+                echo "<textarea name='preparation' id='' cols='130' rows='6'>". $recette["recPreparation"] ."</textarea><br>";
                 echo "<input type='submit' value='mettre à jour'></form>";
 
             }

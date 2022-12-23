@@ -9,14 +9,23 @@ for($nb = 1; $nb <= $_GET["nbIngredients"]; $nb++){
         echo "pas bien";
         $valide = 0;
     }
-    echo $_POST["ingredient". $nb] . "<br>";
+    // echo $_POST["ingredient". $nb] . "<br>";
     if($valide == 1){
         $strIngredient = $strIngredient . $_POST["ingredient". $nb] . ";";
     }
 }
-$strIngredient = substr($strIngredient,0,-1);
-echo $strIngredient;
-$update = $db->updateRecette($strIngredient, $_GET["idRecette"]);
-header("Location: ./Listrecette.php");
-die();
+if($_POST["name"] == null || $_POST["categorie"] == null || $_POST["Temps"] == null || $_POST["preparation"] == null){
+    $valide = 0;
+}
+if($valide == 1){
+    $strIngredient = substr($strIngredient,0,-1);
+    // echo $strIngredient;
+    $update = $db->updateRecette($strIngredient, $_GET["idRecette"]);
+    header("Location: ./Listrecette.php");
+    die();
+
+}
+if($valide == 0){
+    echo "veillez remplire tout les champs.";
+}
 ?>
