@@ -40,20 +40,20 @@ Description : Page pour la page d'accueil du site Recettes.
         <?php
         include("Database.php");
         $db = new Database();
-        $recttes = $db->getAllRecettes();
-        foreach($recttes as $rectte){
-            if($_GET["idRecette"] == $rectte["idRecette"]){
-                echo "<img src=". $rectte["recImage"] ." alt='image'><br>";
-                echo "Nom du plat: " . $rectte["recTitre"] . "<br><br>";
-                echo "Categorie: " . $rectte["recCategorie"] . "<br><br>";
-                echo "Temps de préparation: " . $rectte["recTemps"] . "<br><br>";
+        $recettes = $db->getAllRecettes();
+        foreach($recettes as $recette){
+            if($_GET["idRecette"] == $recette["idRecette"]){
+                echo "<img src=". $recette["recImage"] ." alt='image'><br>";
+                echo "Nom du plat: " . $recette["recTitre"] . "<br><br>";
+                echo "Categorie: " . $recette["recCategorie"] . "<br><br>";
+                echo "Temps de préparation: " . $recette["recTemps"] . "<br><br>";
 
-                $recIngredients = explode(";", $rectte["recIngredients"]);
+                $recIngredients = explode(";", $recette["recIngredients"]);
                 foreach($recIngredients as $recIngredient){
                     echo "<ul><li>". $recIngredient ."</li></ul>";
                 }
 
-                echo "Preparation: " . $rectte["recPreparation"] . "<br><br>";
+                echo "Preparation: " . $recette["recPreparation"] . "<br><br>";
 
             }
         }

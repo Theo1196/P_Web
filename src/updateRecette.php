@@ -43,8 +43,16 @@ Description : Page pour la page d'accueil du site Recettes.
         $recttes = $db->getAllRecettes();
         foreach($recttes as $recette){
             if($_GET["idRecette"] == $recette["idRecette"]){
-                echo "<img src=". $recette["recImage"] ." alt='image'><br>";
+                $nbIngredients = 1;
+                $recIngredients = explode(";", $recette["recIngredients"]);
+                foreach($recIngredients as $recIngredient){
+                    $nbIngredients += 1; 
+                }
+                $nbIngredients -= 1;
 
+                echo "<form method='post' action='checkUpdateRecette.php?idRecette=". $recette["idRecette"] ."&nbIngredients=". $nbIngredients ."'>";
+
+                echo "<img src=". $recette["recImage"] ." alt='image'><br>";
                 echo "<label for='name'>Nom du plat: </label>";
                 echo "<input type='text' name='name' id='name' value=". $recette["recTitre"] ."><br><br>";
                 echo "<label for='categorie'>Categorie: </label>";
@@ -52,17 +60,16 @@ Description : Page pour la page d'accueil du site Recettes.
                 echo "<label for='Temps'>Temps de préparation: </label>";
                 echo "<input type='text' name='Temps' id='Temps' value=". $recette["recTemps"] ."><br><br>";
 
-
+                $nbIngredients = 1;
                 $recIngredients = explode(";", $recette["recIngredients"]);
                 foreach($recIngredients as $recIngredient){
-                    echo $recIngredient;
-                    echo ' ingredient: <input type="text" name="ingredient" id="name" size="100" value="'. $recIngredient .'"></input><br><br>';
+                    echo ' ingredient: <input type="text" name="ingredient'. $nbIngredients .'" id="name" size="100" value="'. $recIngredient .'"></input><br><br>';
+                    $nbIngredients += 1;
                     
                 }
-
                 echo "Preparation: ";
-
-                echo "<textarea name='' id='' cols='130' rows='6'>". $recette["recPreparation"] ."</textarea>";
+                echo "<textarea name='' id='' cols='130' rows='6'>". $recette["recPreparation"] ."</textarea><br>";
+                echo "<input type='submit' value='mettre à jour'></form>";
 
             }
         }

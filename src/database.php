@@ -118,26 +118,13 @@
         $this->queryPrepareExecute($sql, $binds);
     }
 //requete sql qui modifi une recette
-    public function updateRecette($recImage, $idRecette){
-        $sql = "UPDATE t_recette SET recImage = :recImage WHERE  idRecette = :idRecette";
+    public function updateRecette($recIngredients, $idRecette){
+        $sql = "UPDATE t_recette SET recIngredients = :recIngredients WHERE idRecette = :idRecette";
         $binds = [];
-        $binds["recImage"] = ["value" => $recImage , "type" => PDO::PARAM_STR];
-        // $binds["teaName"] = ["value" => $teaName , "type" => PDO::PARAM_STR];
-        // $binds["teaGender"] = ["value" => $teaGender , "type" => PDO::PARAM_STR_CHAR];
-        // $binds["teaNickname"] = ["value" => $teaNickname , "type" => PDO::PARAM_STR];
-        // $binds["teaOrigine"] = ["value" => $teaOrigine , "type" => PDO::PARAM_STR];
-        // $binds["fkSection"] = ["value" => $fkSection , "type" => PDO::PARAM_INT];
+        $binds["recIngredients"] = ["value" => $recIngredients , "type" => PDO::PARAM_STR];
         $binds["idRecette"] = ["value" => $idRecette , "type" => PDO::PARAM_INT];
         $this->queryPrepareExecute($sql, $binds);
     }
-//requete sql qui ajoute une élection
-    public function addOneChoice($teaVoix, $idTeacher){
-        $sql = "UPDATE t_teacher SET teaVoix = $teaVoix WHERE idTeacher =$idTeacher";
-        $req = $this->querySimpleExecute($sql);
-        $teaVoix = $this->formatData($req);
-        return $teaVoix;
-    }
-
 
  }
 
