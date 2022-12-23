@@ -41,7 +41,17 @@ input{
 
 li{
     width: 425px;
-    border-right: 1px solid rgb(0, 0, 0);
+    border-right: 1px solid #bbb;
+}
+
+li:first-child
+{
+    border-right: 1px solid #bbb;
+}
+
+li:last-child
+{
+    border-right: none;
 }
 
 h1{
@@ -107,6 +117,27 @@ li a {
 .Form-contact, #submitContact
 {
     margin-top: 15px;
+}
+
+.addrecette{
+    margin-left: 85px;
+}
+
+.col-md-4{
+    padding: 7px;
+}
+
+.formAddRecette{
+    display: flex;
+}
+
+.addButton{
+    margin: 2px;
+    border-radius: 15px;
+}
+
+.addBtn {
+    margin-top: 5px;
 }
 
 footer{
