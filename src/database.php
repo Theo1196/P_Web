@@ -1,8 +1,6 @@
 <?php
 
-/**
- * 
- * 
+/*
  * Auteur : Luca
  * Date : 21.11.22
  * Description : requetes sql utilier pour les page en php
@@ -31,7 +29,7 @@
         return $this->connector->query($query);
         // TODO: permet de pr�parer et d�ex�cuter une requ�te de type simple (sans where)
     }
-//prepare, bind et execute pour proteger les requetes
+    //prepare, bind et execute pour proteger les requetes
     private function queryPrepareExecute($query, $binds){
         $req = $this->connector->prepare($query);
         foreach ($binds as $key => $element) {
@@ -40,19 +38,13 @@
         $req->execute();
         return $req;        
     }
-//format data
+    //format data
     private function formatData($req){
         $result = $req->fetchALL(PDO::FETCH_ASSOC);
         return $result;
     }
 
-
-    private function unsetData($req){
-
-        // TODO: vider le jeu d�enregistrement
-    }
-
-//requete sql qui rend tous les profs
+    //requete sql qui rend tous les recettes
     public function getAllRecettes(){
         $query = "SELECT * FROM t_recette";
         $req = $this->querySimpleExecute($query);
@@ -60,15 +52,8 @@
         return $recette;
 
     }
-//requete sql qui rend tous les utilisateurs
-    public function getAllUser(){
-        $query = "SELECT * FROM t_user";
-        $req = $this->querySimpleExecute($query);
-        $users = $this->formatData($req);
-        return $users;
-        
-    }
-//requete sql utiliser pour afficher la page differement selon l'utilisateur
+
+    //requete sql utiliser pour afficher la page differement selon l'utilisateur
     public function getUser($data) {
         $query = "SELECT * FROM t_user WHERE useLogin ='". $data["login"] ."'";
         $req = $this->querySimpleExecute($query);
@@ -81,24 +66,8 @@
         }
 
     }
-//requete sql qui rend les section
-    public function getSection(){
-        $query = "SELECT * FROM t_section";
-        $req = $this->querySimpleExecute($query);
-        $sections = $this->formatData($req);
-        return $sections;
-    }
-//requete sql qui rend un prof
-    public function getOneTeacher($id){
-        $query = "SELECT * FROM t_teacher INNER JOIN t_section ON t_teacher.fkSection = t_section.idSection WHERE idTeacher='". $id ."'";
-        
-        $req = $this->querySimpleExecute($query);
-        $teacher = $this->formatData($req);
-        ///retourne la premiere valeur du tableau
-        return $teacher[0];
 
-    }
-//requete sql qui efface un prof
+    //requete sql qui efface une recette
     public function deleteOneRecette($idRecette){
 
         $sql = "DELETE FROM t_recette WHERE idRecette='" . $idRecette . "'";
@@ -107,7 +76,7 @@
         return $idRecette;
 
     }
-//requete sql qui ajoute une recette
+    //requete sql qui ajoute une recette
     public function addOneRecette($recTitre, $recCategorie, $recPreparation, $recImage){
         $sql = "INSERT INTO t_recette (`recTitre`, `recCategorie`, `recPreparation`, `recImage`) VALUES (:recTitre, :recCategorie, :recPreparation, :recImage)";
         $binds = [];
@@ -117,7 +86,7 @@
         $binds["recImage"] = ["value" => $recImage , "type" => PDO::PARAM_STR];
         $this->queryPrepareExecute($sql, $binds);
     }
-//requete sql qui modifi une recette
+    //requete sql qui modifi une recette
     public function updateRecette($recIngredients, $idRecette){
         $sql = "UPDATE t_recette SET recIngredients = :recIngredients WHERE idRecette = :idRecette";
         $binds = [];
@@ -127,6 +96,3 @@
     }
 
  }
-
-
-?>

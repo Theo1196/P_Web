@@ -1,3 +1,9 @@
+<!-- 
+Auteur : Luca Paul 
+Date : 25.11.2022
+Lieu : ETML 
+Description : Page pour vérifier tous les champs pour ajouter une rectte
+-->
 <?php
 $valide = 0;
 include("database.php");
@@ -10,14 +16,14 @@ $nomFinal = $nomImage. "." . $extention;
 $image = $_FILES["addFile"]["tmp_name"];
 $path = "./img/" . $nomFinal;
 if($_POST["recName"] == null || $_POST["recCategorie"] == null || $_POST["recPreparation"] == null){
-    echo "veuiller remplire tout les champs";
+    echo "Veuiller renseigner tous les champs";
     $valide = 0;
 }
 elseif($extention == "jpg" || $extention == "png" || $extention == "jpeg"){
     $valide = 1;
 }
 else{
-    echo "l'image doit etre un 'jpg' ou un 'png'";
+    echo "L'image doit être sous le format 'jpg' ou 'png'";
     $valide = 0;
 }
 

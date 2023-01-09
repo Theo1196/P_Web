@@ -1,5 +1,5 @@
 <!-- 
-Auteur : Thibeau Racine
+Auteur : Théo Dormond
 Date : 25.11.2022
 Lieu : ETML 
 Description : Page pour la page d'accueil du site Recettes.
@@ -27,10 +27,18 @@ Description : Page pour la page d'accueil du site Recettes.
 
         <div class="Container-header">
             <ul class="nav-bar">
-                <li><a class="nav-btn" href="Accueil.php"><h1>Accueil</h1></a></li>
-                <li><a class="nav-btn" href="AddRecette.php"><h1>Ajouter une recette</h1></a></li>
-                <li><a class="nav-btn" href="ListRecette.php" style=" text-decoration: underline;"><h1>Liste des recettes</h1></a></li>
-                <li><a class="nav-btn" href="Contact.php"><h1>Contact</h1></a></li>
+                <li><a class="nav-btn" href="Accueil.php">
+                        <h1>Accueil</h1>
+                    </a></li>
+                <li><a class="nav-btn" href="AddRecette.php">
+                        <h1>Ajouter une recette</h1>
+                    </a></li>
+                <li><a class="nav-btn" href="ListRecette.php" style=" text-decoration: underline;">
+                        <h1>Liste des recettes</h1>
+                    </a></li>
+                <li><a class="nav-btn" href="Contact.php">
+                        <h1>Contact</h1>
+                    </a></li>
             </ul>
         </div>
     </header>
@@ -41,20 +49,18 @@ Description : Page pour la page d'accueil du site Recettes.
         include("Database.php");
         $db = new Database();
         $recettes = $db->getAllRecettes();
-        foreach($recettes as $recette){
-            if($_GET["idRecette"] == $recette["idRecette"]){
-                echo "<img src=". $recette["recImage"] ." alt='image'><br>";
+        foreach ($recettes as $recette) {
+            if ($_GET["idRecette"] == $recette["idRecette"]) {
+                echo "<img src=" . $recette["recImage"] . " alt='image'><br>";
                 echo "Nom du plat: " . $recette["recTitre"] . "<br><br>";
                 echo "Categorie: " . $recette["recCategorie"] . "<br><br>";
                 echo "Temps de préparation: " . $recette["recTemps"] . "<br><br>";
 
                 $recIngredients = explode(";", $recette["recIngredients"]);
-                foreach($recIngredients as $recIngredient){
-                    echo "<ul><li>". $recIngredient ."</li></ul>";
+                foreach ($recIngredients as $recIngredient) {
+                    echo "<ul><li>" . $recIngredient . "</li></ul>";
                 }
-
                 echo "Preparation: " . $recette["recPreparation"] . "<br><br>";
-
             }
         }
         ?>
@@ -65,4 +71,5 @@ Description : Page pour la page d'accueil du site Recettes.
         <p class="copyright">Copyright © - Luca, Veprim, Théo</p>
     </footer>
 </body>
+
 </html>

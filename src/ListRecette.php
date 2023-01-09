@@ -27,10 +27,18 @@ Description : Page pour la page d'accueil du site Recettes.
 
         <div class="Container-header">
             <ul class="nav-bar">
-                <li><a class="nav-btn" href="Accueil.php"><h1>Accueil</h1></a></li>
-                <li><a class="nav-btn" href="AddRecette.php"><h1>Ajouter une recette</h1></a></li>
-                <li><a class="nav-btn" href="ListRecette.php" style=" text-decoration: underline;"><h1>Liste des recettes</h1></a></li>
-                <li><a class="nav-btn" href="Contact.php"><h1>Contact</h1></a></li>
+                <li><a class="nav-btn" href="Accueil.php">
+                        <h1>Accueil</h1>
+                    </a></li>
+                <li><a class="nav-btn" href="AddRecette.php">
+                        <h1>Ajouter une recette</h1>
+                    </a></li>
+                <li><a class="nav-btn" href="ListRecette.php" style=" text-decoration: underline;">
+                        <h1>Liste des recettes</h1>
+                    </a></li>
+                <li><a class="nav-btn" href="Contact.php">
+                        <h1>Contact</h1>
+                    </a></li>
             </ul>
         </div>
     </header>
@@ -42,21 +50,16 @@ Description : Page pour la page d'accueil du site Recettes.
         include("Database.php");
         $db = new Database();
         $recettes = $db->getAllRecettes();
-        foreach($recettes as $recette){
-            echo "<form method='post' action='checkListRecette.php?idRecette=". $recette["idRecette"] ."'>";
-
-
-            echo "<img src=". $recette["recImage"] ." alt='image'> /";
+        foreach ($recettes as $recette) {
+            echo "<form method='post' action='checkListRecette.php?idRecette=" . $recette["idRecette"] . "'>";
+            echo "<img src=" . $recette["recImage"] . " alt='image'> /";
             echo $recette["recTitre"] . " / ";
             echo $recette["recCategorie"] . " ";
             echo "<input type='submit' value='effacer'></form>";
-
-            echo "<form method='post' action='detailRecette.php?idRecette=". $recette["idRecette"] ."'>";
+            echo "<form method='post' action='detailRecette.php?idRecette=" . $recette["idRecette"] . "'>";
             echo "<input type='submit' value='detail'></form><br>";
-            
-            echo "<form method='post' action='updateRecette.php?idRecette=". $recette["idRecette"] ."'>";
+            echo "<form method='post' action='updateRecette.php?idRecette=" . $recette["idRecette"] . "'>";
             echo "<input type='submit' value='mettre à jour'></form><br>";
-
         }
         ?>
 
@@ -66,4 +69,5 @@ Description : Page pour la page d'accueil du site Recettes.
         <p class="copyright">Copyright © - Luca, Veprim, Théo</p>
     </footer>
 </body>
+
 </html>

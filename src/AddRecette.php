@@ -1,5 +1,5 @@
 <!-- 
-Auteur : moi 
+Auteur : Théo Dormond 
 Date : 25.11.2022
 Lieu : ETML 
 Description : Page pour la page d"accueil du site Recettes.
@@ -40,12 +40,6 @@ Description : Page pour la page d"accueil du site Recettes.
         include("Database.php");
         $db = new Database();
         $recttes = $db->getAllRecettes();
-        // foreach($recttes as $rectte){
-
-        //     echo "<img src=". $rectte["recImage"] ." alt="image'>";
-        //     // echo '<img src="data:image/jpeg;base64,'.base64_encode($rectte['recImage']).'"/><br>';
-        // }
-        // important d'avoir enctype dans le form
         ?>
         <form method="post" class="addrecette" action="checkRecette.php" enctype="multipart/form-data">
             <div class="col-md-4">
@@ -105,6 +99,7 @@ Description : Page pour la page d"accueil du site Recettes.
             <input class="addBtn" type="submit" value="Ajouter la recette">
         </form>
 
+        <!-- Js pour afficher le bouton "ajouter un ingredient/étape" et rajouter un input -->
         <script>
             document.getElementById("clickMe").onclick = function() {
                 //first div

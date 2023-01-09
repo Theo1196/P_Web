@@ -1,3 +1,10 @@
+<!-- 
+Auteur : Luca Paul 
+Date : 25.11.2022
+Lieu : ETML 
+Description : Page pour lister toutes les recette
+-->
+
 <?php
 include("Database.php");
 $db = new Database();

@@ -1,5 +1,5 @@
 <!-- 
-Auteur : Thibeau Racine
+Auteur : Théo Dormond
 Date : 25.11.2022
 Lieu : ETML 
 Description : Page pour la page d'accueil du site Recettes.
@@ -27,10 +27,18 @@ Description : Page pour la page d'accueil du site Recettes.
 
         <div class="Container-header">
             <ul class="nav-bar">
-                <li><a class="nav-btn" href="Accueil.php"><h1>Accueil</h1></a></li>
-                <li><a class="nav-btn" href="AddRecette.php"><h1>Ajouter une recette</h1></a></li>
-                <li><a class="nav-btn" href="ListRecette.php" style=" text-decoration: underline;"><h1>Liste des recettes</h1></a></li>
-                <li><a class="nav-btn" href="Contact.php"><h1>Contact</h1></a></li>
+                <li><a class="nav-btn" href="Accueil.php">
+                        <h1>Accueil</h1>
+                    </a></li>
+                <li><a class="nav-btn" href="AddRecette.php">
+                        <h1>Ajouter une recette</h1>
+                    </a></li>
+                <li><a class="nav-btn" href="ListRecette.php" style=" text-decoration: underline;">
+                        <h1>Liste des recettes</h1>
+                    </a></li>
+                <li><a class="nav-btn" href="Contact.php">
+                        <h1>Contact</h1>
+                    </a></li>
             </ul>
         </div>
     </header>
@@ -41,36 +49,34 @@ Description : Page pour la page d'accueil du site Recettes.
         include("Database.php");
         $db = new Database();
         $recttes = $db->getAllRecettes();
-        foreach($recttes as $recette){
-            if($_GET["idRecette"] == $recette["idRecette"]){
+        foreach ($recttes as $recette) {
+            if ($_GET["idRecette"] == $recette["idRecette"]) {
                 $nbIngredients = 1;
                 $recIngredients = explode(";", $recette["recIngredients"]);
-                foreach($recIngredients as $recIngredient){
-                    $nbIngredients += 1; 
+                foreach ($recIngredients as $recIngredient) {
+                    $nbIngredients += 1;
                 }
                 $nbIngredients -= 1;
 
-                echo "<form method='post' action='checkUpdateRecette.php?idRecette=". $recette["idRecette"] ."&nbIngredients=". $nbIngredients ."'>";
+                echo "<form method='post' action='checkUpdateRecette.php?idRecette=" . $recette["idRecette"] . "&nbIngredients=" . $nbIngredients . "'>";
 
-                echo "<img src=". $recette["recImage"] ." alt='image'><br>";
+                echo "<img src=" . $recette["recImage"] . " alt='image'><br>";
                 echo "<label for='name'>Nom du plat: </label>";
-                echo "<input type='text' name='name' id='name' value=". $recette["recTitre"] ."><br><br>";
+                echo "<input type='text' name='name' id='name' value=" . $recette["recTitre"] . "><br><br>";
                 echo "<label for='categorie'>Categorie: </label>";
-                echo "<input type='text' name='categorie' id='categorie' value=". $recette["recCategorie"] ."><br><br>";
+                echo "<input type='text' name='categorie' id='categorie' value=" . $recette["recCategorie"] . "><br><br>";
                 echo "<label for='Temps'>Temps de préparation: </label>";
-                echo "<input type='text' name='Temps' id='Temps' value=". $recette["recTemps"] ."><br><br>";
+                echo "<input type='text' name='Temps' id='Temps' value=" . $recette["recTemps"] . "><br><br>";
 
                 $nbIngredients = 1;
                 $recIngredients = explode(";", $recette["recIngredients"]);
-                foreach($recIngredients as $recIngredient){
-                    echo ' ingredient: <input type="text" name="ingredient'. $nbIngredients .'" id="name" size="100" value="'. $recIngredient .'"></input><br><br>';
+                foreach ($recIngredients as $recIngredient) {
+                    echo ' ingredient: <input type="text" name="ingredient' . $nbIngredients . '" id="name" size="100" value="' . $recIngredient . '"></input><br><br>';
                     $nbIngredients += 1;
-                    
                 }
                 echo "Preparation: ";
-                echo "<textarea name='preparation' id='' cols='130' rows='6'>". $recette["recPreparation"] ."</textarea><br>";
+                echo "<textarea name='preparation' id='' cols='130' rows='6'>" . $recette["recPreparation"] . "</textarea><br>";
                 echo "<input type='submit' value='mettre à jour'></form>";
-
             }
         }
         ?>
@@ -80,4 +86,5 @@ Description : Page pour la page d'accueil du site Recettes.
         <p class="copyright">Copyright © - Luca, Veprim, Théo</p>
     </footer>
 </body>
+
 </html>
